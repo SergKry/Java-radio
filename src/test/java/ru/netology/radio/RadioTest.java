@@ -174,7 +174,7 @@ public class RadioTest {
         service.currentSoundVolume = 5;
         service.increaseVolumeSound();
 
-        int expected = 6    ;
+        int expected = 6;
         int actual = service.getCurrentSoundVolume();
         Assertions.assertEquals(expected, actual);
     }

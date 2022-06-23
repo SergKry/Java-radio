@@ -16,6 +16,7 @@ public class Radio {
         }
         currentNumberRadioStation = newCurrentNumberRadioStation;
     }
+
     public void nextNumberRadioStation() {    // переключение на плюс
         if (currentNumberRadioStation < 9) {
             currentNumberRadioStation = currentNumberRadioStation + 1;
@@ -29,13 +30,12 @@ public class Radio {
         if (currentNumberRadioStation > 0 && currentNumberRadioStation <= 9) {
             currentNumberRadioStation = currentNumberRadioStation - 1;
             //}
-        }
-        else if (currentNumberRadioStation ==0){
+        } else if (currentNumberRadioStation == 0) {
             currentNumberRadioStation = 9;
         }
-       // if (currentNumberRadioStation <= -1 && currentNumberRadioStation >= 10){
-      //      return;   ограничение на числа до и после не работает
-      //  }
+        // if (currentNumberRadioStation <= -1 && currentNumberRadioStation >= 10){
+        //      return;   ограничение на числа до и после не работает
+        //  }
     }
 
     int currentSoundVolume;   // текущая громкость
