@@ -1,64 +1,74 @@
 package ru.netology.radio;
 
 public class Radio {
-    public int currentNumberRadioStation; // текущий номер р-станции
+
+    private int currentNumberRadioStation;
+    private int maxNumberRadioStation;
+    private int minNumberRadioStation;
+    private int currentSoundVolume;   // текущая громкость звука
+
+    public Radio() {
+        maxNumberRadioStation = 9;
+        minNumberRadioStation = 0;
+    }
+
+    public Radio(int quantityRadioStation) {
+        this.maxNumberRadioStation = quantityRadioStation - 1;
+    }
 
     public int getCurrentNumberRadioStation() { //вызов данных через доп переменную
         return currentNumberRadioStation;
     }
 
-    public void setCurrentNumberRadioStation(int newCurrentNumberRadioStation) {  // прямая передача данных о р-станции
-        if (newCurrentNumberRadioStation < 0) {
-            return; // прекращение при отрицательном значении
+    public void setCurrentNumberRadioStation(int newCurrentNumberRadioStation) {  //передача данных о р-станции
+        if (newCurrentNumberRadioStation < minNumberRadioStation) {
+            return;
         }
-        if (newCurrentNumberRadioStation > 9) {
-            return; // прекращение запроса при значении больше 9
+        if (newCurrentNumberRadioStation > maxNumberRadioStation) {
+            return;
         }
         currentNumberRadioStation = newCurrentNumberRadioStation;
     }
-    public void nextNumberRadioStation() {    // переключение на плюс
-        if (currentNumberRadioStation < 9) {
-            currentNumberRadioStation = currentNumberRadioStation + 1;
-        } else {
-            currentNumberRadioStation = 0;
-        }
 
+    public void nextNumberRadioStation() {    // переключение на плюс
+        if (currentNumberRadioStation < maxNumberRadioStation) {
+            currentNumberRadioStation++;
+        } else {
+            currentNumberRadioStation = minNumberRadioStation;
+        }
     }
 
     public void prevNumberRadioStation() { //переключение на минус
-        if (currentNumberRadioStation > 0 && currentNumberRadioStation <= 9) {
-            currentNumberRadioStation = currentNumberRadioStation - 1;
-            //}
+        if (currentNumberRadioStation > minNumberRadioStation) {
+            currentNumberRadioStation--;
+        } else {
+            currentNumberRadioStation = maxNumberRadioStation;
         }
-        else if (currentNumberRadioStation ==0){
-            currentNumberRadioStation = 9;
-        }
-       // if (currentNumberRadioStation <= -1 && currentNumberRadioStation >= 10){
-      //      return;   ограничение на числа до и после не работает
-      //  }
     }
-
-    int currentSoundVolume;   // текущая громкость
 
     public int getCurrentSoundVolume() { //вызов данных через доп переменную
         return currentSoundVolume;
     }
 
-    public void increaseVolumeSound() {    // увеличение громкости
-        if (currentSoundVolume < 10) {
-            currentSoundVolume = currentSoundVolume + 1;
+    public void setCurrentSoundVolume(int newCurrentSoundVolume) {  //  передача данных о р-станции
+        if (newCurrentSoundVolume < 0) {
+            return;
         }
-        if (currentSoundVolume >= 10) {
-            currentSoundVolume = 10;
+        if (newCurrentSoundVolume > 100) {
+            return;
+        }
+        currentSoundVolume = newCurrentSoundVolume;
+    }
+
+    public void increaseVolumeSound() {    // увеличение громкости
+        if (currentSoundVolume < 100) {
+            currentSoundVolume++;
         }
     }
 
     public void decreaseVolumeSound() { //уменьшение громкости
-        if (currentSoundVolume <= 10) {
-            currentSoundVolume = currentSoundVolume - 1;
-        }
-        if (currentSoundVolume <= 0) {
-            currentSoundVolume = 0;
+        if (currentSoundVolume > 0) {
+            currentSoundVolume--;
         }
     }
 }
